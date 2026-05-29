@@ -233,6 +233,11 @@
       box-shadow: 0 0 6px rgba(245, 158, 11, 0.6);
     }
 
+    .day-cell .attendance-dot.closed {
+      background: #8b5cf6;
+      box-shadow: 0 0 6px rgba(139, 92, 246, 0.6);
+    }
+
     .day-cell.today .attendance-dot.present {
       background: #86efac;
       box-shadow: 0 0 6px rgba(134, 239, 172, 0.6);
@@ -246,6 +251,11 @@
     .day-cell.today .attendance-dot.online {
       background: #fde047;
       box-shadow: 0 0 6px rgba(253, 224, 71, 0.6);
+    }
+
+    .day-cell.today .attendance-dot.closed {
+      background: #c4b5fd;
+      box-shadow: 0 0 6px rgba(196, 181, 253, 0.6);
     }
 
     /* Year view: larger dot for mini cards */
@@ -311,6 +321,11 @@
       color: #f59e0b;
     }
 
+    .attendance-badge.closed {
+      background: rgba(139, 92, 246, 0.2);
+      color: #8b5cf6;
+    }
+
     .attendance-badge.none {
       background: rgba(255, 255, 255, 0.08);
       color: rgba(255, 255, 255, 0.4);
@@ -369,6 +384,13 @@
       box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
     }
 
+    .attendance-btn.closed:hover,
+    .attendance-btn.closed.active {
+      background: rgba(139, 92, 246, 0.2);
+      border-color: #8b5cf6;
+      box-shadow: 0 0 12px rgba(139, 92, 246, 0.2);
+    }
+
     .attendance-btn .btn-icon {
       font-size: 16px;
     }
@@ -413,6 +435,7 @@
     .attendance-summary-item .dot.present { background: #22c55e; }
     .attendance-summary-item .dot.absent { background: #ef4444; }
     .attendance-summary-item .dot.online { background: #f59e0b; }
+    .attendance-summary-item .dot.closed { background: #8b5cf6; }
 
     .attendance-summary-item .count {
       color: #fff;
@@ -614,6 +637,9 @@
         <button class="attendance-btn online" data-status="online" id="attendanceOnline">
           <span class="btn-icon">💻</span> Online
         </button>
+        <button class="attendance-btn closed" data-status="closed" id="attendanceClosed">
+          <span class="btn-icon">🔒</span> Closed
+        </button>
         <button class="attendance-btn clear-btn" id="attendanceClear" title="Clear attendance">
           ✕
         </button>
@@ -630,6 +656,10 @@
         <div class="attendance-summary-item">
           <span class="dot online"></span>
           Online: <span class="count" id="countOnline">0</span>
+        </div>
+        <div class="attendance-summary-item">
+          <span class="dot closed"></span>
+          Closed: <span class="count" id="countClosed">0</span>
         </div>
       </div>
     </div>
@@ -669,10 +699,12 @@
     const attendancePresent = document.getElementById('attendancePresent');
     const attendanceAbsent = document.getElementById('attendanceAbsent');
     const attendanceOnline = document.getElementById('attendanceOnline');
+    const attendanceClosed = document.getElementById('attendanceClosed');
     const attendanceClear = document.getElementById('attendanceClear');
     const countPresent = document.getElementById('countPresent');
     const countAbsent = document.getElementById('countAbsent');
     const countOnline = document.getElementById('countOnline');
+    const countClosed = document.getElementById('countClosed');
 
     // ===== Attendance Logic =====
     const STORAGE_KEY = 'calendar_attendance';
@@ -707,15 +739,17 @@
 
     function updateAttendanceSummary() {
       const data = getAttendanceData();
-      let p = 0, a = 0, o = 0;
+      let p = 0, a = 0, o = 0, c = 0;
       for (const status of Object.values(data)) {
         if (status === 'present') p++;
         else if (status === 'absent') a++;
         else if (status === 'online') o++;
+        else if (status === 'closed') c++;
       }
       countPresent.textContent = p;
       countAbsent.textContent = a;
       countOnline.textContent = o;
+      countClosed.textContent = c;
     }
 
     function showAttendancePanel(date, month, year) {
@@ -727,13 +761,13 @@
       attendanceDateText.textContent = formatted;
 
       // Update badge
-      const statusLabels = { present: '✅ Present', absent: '❌ Absent', online: '💻 Online' };
-      const badgeClasses = ['present', 'absent', 'online', 'none'];
+      const statusLabels = { present: '✅ Present', absent: '❌ Absent', online: '💻 Online', closed: '🔒 Closed' };
+      const badgeClasses = ['present', 'absent', 'online', 'closed', 'none'];
       attendanceBadge.className = 'attendance-badge ' + (status || 'none');
       attendanceBadge.textContent = status ? statusLabels[status] : 'Not marked';
 
       // Highlight active button
-      [attendancePresent, attendanceAbsent, attendanceOnline].forEach(btn => {
+      [attendancePresent, attendanceAbsent, attendanceOnline, attendanceClosed].forEach(btn => {
         btn.classList.toggle('active', btn.dataset.status === status);
       });
 
@@ -779,6 +813,7 @@
     attendancePresent.addEventListener('click', () => handleAttendanceClick('present'));
     attendanceAbsent.addEventListener('click', () => handleAttendanceClick('absent'));
     attendanceOnline.addEventListener('click', () => handleAttendanceClick('online'));
+    attendanceClosed.addEventListener('click', () => handleAttendanceClick('closed'));
     attendanceClear.addEventListener('click', clearAttendanceForSelected);
 
     function isToday(day, month, year) {
