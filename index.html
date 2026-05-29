@@ -206,6 +206,219 @@
       color: #fff;
     }
 
+    /* Attendance indicator on day cells */
+    .day-cell .attendance-dot {
+      position: absolute;
+      bottom: 3px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+    }
+
+    .day-cell .attendance-dot.present {
+      background: #22c55e;
+      box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
+    }
+
+    .day-cell .attendance-dot.absent {
+      background: #ef4444;
+      box-shadow: 0 0 6px rgba(239, 68, 68, 0.6);
+    }
+
+    .day-cell .attendance-dot.online {
+      background: #f59e0b;
+      box-shadow: 0 0 6px rgba(245, 158, 11, 0.6);
+    }
+
+    .day-cell.today .attendance-dot.present {
+      background: #86efac;
+      box-shadow: 0 0 6px rgba(134, 239, 172, 0.6);
+    }
+
+    .day-cell.today .attendance-dot.absent {
+      background: #fca5a5;
+      box-shadow: 0 0 6px rgba(252, 165, 165, 0.6);
+    }
+
+    .day-cell.today .attendance-dot.online {
+      background: #fde047;
+      box-shadow: 0 0 6px rgba(253, 224, 71, 0.6);
+    }
+
+    /* Year view: larger dot for mini cards */
+    .month-card .day-cell .attendance-dot {
+      bottom: 1px;
+      width: 5px;
+      height: 5px;
+    }
+
+    /* Attendance Panel */
+    .attendance-panel {
+      margin-top: 20px;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      transition: all 0.3s ease;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .attendance-panel.hidden {
+      display: none;
+    }
+
+    .attendance-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .attendance-panel-date {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .attendance-panel-date strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .attendance-badge {
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .attendance-badge.present {
+      background: rgba(34, 197, 94, 0.2);
+      color: #22c55e;
+    }
+
+    .attendance-badge.absent {
+      background: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+    }
+
+    .attendance-badge.online {
+      background: rgba(245, 158, 11, 0.2);
+      color: #f59e0b;
+    }
+
+    .attendance-badge.none {
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .attendance-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .attendance-btn {
+      flex: 1;
+      padding: 10px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      background: rgba(255, 255, 255, 0.04);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .attendance-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .attendance-btn:active {
+      transform: translateY(0);
+      scale: 0.97;
+    }
+
+    .attendance-btn.present:hover,
+    .attendance-btn.present.active {
+      background: rgba(34, 197, 94, 0.2);
+      border-color: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.2);
+    }
+
+    .attendance-btn.absent:hover,
+    .attendance-btn.absent.active {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: #ef4444;
+      box-shadow: 0 0 12px rgba(239, 68, 68, 0.2);
+    }
+
+    .attendance-btn.online:hover,
+    .attendance-btn.online.active {
+      background: rgba(245, 158, 11, 0.2);
+      border-color: #f59e0b;
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
+    }
+
+    .attendance-btn .btn-icon {
+      font-size: 16px;
+    }
+
+    .attendance-btn.clear-btn {
+      flex: 0.5;
+      min-width: 60px;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 16px;
+    }
+
+    .attendance-btn.clear-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.7);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Summary row */
+    .attendance-summary {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .attendance-summary-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .attendance-summary-item .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .attendance-summary-item .dot.present { background: #22c55e; }
+    .attendance-summary-item .dot.absent { background: #ef4444; }
+    .attendance-summary-item .dot.online { background: #f59e0b; }
+
+    .attendance-summary-item .count {
+      color: #fff;
+      font-weight: 600;
+    }
+
     /* Year view */
     .year-grid {
       display: grid;
@@ -379,8 +592,46 @@
     <!-- Footer -->
     <div class="calendar-footer">
       <span style="color: rgba(255,255,255,0.3); font-size: 12px; letter-spacing: 0.3px;">
-        Click a date to select it
+        Click a date to mark attendance
       </span>
+    </div>
+
+    <!-- Attendance Panel -->
+    <div class="attendance-panel hidden" id="attendancePanel">
+      <div class="attendance-panel-header">
+        <div class="attendance-panel-date" id="attendanceDate">
+          <strong id="attendanceDateText">--</strong>
+        </div>
+        <span class="attendance-badge none" id="attendanceBadge">Not marked</span>
+      </div>
+      <div class="attendance-actions">
+        <button class="attendance-btn present" data-status="present" id="attendancePresent">
+          <span class="btn-icon">✅</span> Present
+        </button>
+        <button class="attendance-btn absent" data-status="absent" id="attendanceAbsent">
+          <span class="btn-icon">❌</span> Absent
+        </button>
+        <button class="attendance-btn online" data-status="online" id="attendanceOnline">
+          <span class="btn-icon">💻</span> Online
+        </button>
+        <button class="attendance-btn clear-btn" id="attendanceClear" title="Clear attendance">
+          ✕
+        </button>
+      </div>
+      <div class="attendance-summary" id="attendanceSummary">
+        <div class="attendance-summary-item">
+          <span class="dot present"></span>
+          Present: <span class="count" id="countPresent">0</span>
+        </div>
+        <div class="attendance-summary-item">
+          <span class="dot absent"></span>
+          Absent: <span class="count" id="countAbsent">0</span>
+        </div>
+        <div class="attendance-summary-item">
+          <span class="dot online"></span>
+          Online: <span class="count" id="countOnline">0</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -398,6 +649,8 @@
 
     const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
+
+
     const calendarWrapper = document.getElementById('calendarWrapper');
     const calendarTitle = document.getElementById('calendarTitle');
     const daysGrid = document.getElementById('daysGrid');
@@ -408,6 +661,125 @@
     const nextBtn = document.getElementById('nextBtn');
     const todayBtn = document.getElementById('todayBtn');
     const viewToggleBtn = document.getElementById('viewToggleBtn');
+
+    // Attendance DOM elements
+    const attendancePanel = document.getElementById('attendancePanel');
+    const attendanceDateText = document.getElementById('attendanceDateText');
+    const attendanceBadge = document.getElementById('attendanceBadge');
+    const attendancePresent = document.getElementById('attendancePresent');
+    const attendanceAbsent = document.getElementById('attendanceAbsent');
+    const attendanceOnline = document.getElementById('attendanceOnline');
+    const attendanceClear = document.getElementById('attendanceClear');
+    const countPresent = document.getElementById('countPresent');
+    const countAbsent = document.getElementById('countAbsent');
+    const countOnline = document.getElementById('countOnline');
+
+    // ===== Attendance Logic =====
+    const STORAGE_KEY = 'calendar_attendance';
+
+    function getAttendanceData() {
+      try {
+        const data = localStorage.getItem(STORAGE_KEY);
+        return data ? JSON.parse(data) : {};
+      } catch {
+        return {};
+      }
+    }
+
+    function setAttendance(dateKey, status) {
+      const data = getAttendanceData();
+      if (status === null) {
+        delete data[dateKey];
+      } else {
+        data[dateKey] = status;
+      }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    function getAttendance(dateKey) {
+      const data = getAttendanceData();
+      return data[dateKey] || null;
+    }
+
+    function formatDateKey(year, month, day) {
+      return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    }
+
+    function updateAttendanceSummary() {
+      const data = getAttendanceData();
+      let p = 0, a = 0, o = 0;
+      for (const status of Object.values(data)) {
+        if (status === 'present') p++;
+        else if (status === 'absent') a++;
+        else if (status === 'online') o++;
+      }
+      countPresent.textContent = p;
+      countAbsent.textContent = a;
+      countOnline.textContent = o;
+    }
+
+    function showAttendancePanel(date, month, year) {
+      const dateKey = formatDateKey(year, month, date);
+      const status = getAttendance(dateKey);
+      const dateObj = new Date(year, month, date);
+      const formatted = dateObj.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+
+      attendanceDateText.textContent = formatted;
+
+      // Update badge
+      const statusLabels = { present: '✅ Present', absent: '❌ Absent', online: '💻 Online' };
+      const badgeClasses = ['present', 'absent', 'online', 'none'];
+      attendanceBadge.className = 'attendance-badge ' + (status || 'none');
+      attendanceBadge.textContent = status ? statusLabels[status] : 'Not marked';
+
+      // Highlight active button
+      [attendancePresent, attendanceAbsent, attendanceOnline].forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.status === status);
+      });
+
+      attendancePanel.classList.remove('hidden');
+    }
+
+    function hideAttendancePanel() {
+      attendancePanel.classList.add('hidden');
+    }
+
+    function handleAttendanceClick(status) {
+      if (!selectedDate) return;
+      const dateKey = formatDateKey(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate());
+      const current = getAttendance(dateKey);
+
+      if (current === status) {
+        // Toggle off
+        setAttendance(dateKey, null);
+      } else {
+        setAttendance(dateKey, status);
+      }
+
+      showAttendancePanel(selectedDate.getDate(), selectedDate.getMonth(), selectedDate.getFullYear());
+      updateAttendanceSummary();
+      renderCurrentView();
+    }
+
+    function clearAttendanceForSelected() {
+      if (!selectedDate) return;
+      const dateKey = formatDateKey(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate());
+      setAttendance(dateKey, null);
+      showAttendancePanel(selectedDate.getDate(), selectedDate.getMonth(), selectedDate.getFullYear());
+      updateAttendanceSummary();
+      renderCurrentView();
+    }
+
+    function getAttendanceDotHtml(status) {
+      if (!status) return '';
+      return `<span class="attendance-dot ${status}"></span>`;
+    }
+
+    // Attendance event listeners
+    attendancePresent.addEventListener('click', () => handleAttendanceClick('present'));
+    attendanceAbsent.addEventListener('click', () => handleAttendanceClick('absent'));
+    attendanceOnline.addEventListener('click', () => handleAttendanceClick('online'));
+    attendanceClear.addEventListener('click', clearAttendanceForSelected);
 
     function isToday(day, month, year) {
       return day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
@@ -443,11 +815,15 @@
       for (let day = 1; day <= daysInMonth; day++) {
         const dateForCheck = new Date(currentYear, currentMonth, day);
         const dayOfWeek = dateForCheck.getDay();
+        const dateKey = formatDateKey(currentYear, currentMonth, day);
+        const attendance = getAttendance(dateKey);
         let classes = 'day-cell';
         if (isToday(day, currentMonth, currentYear)) classes += ' today';
         if (isSelected(day, currentMonth, currentYear)) classes += ' selected';
         if (isWeekend(dayOfWeek) && !isToday(day, currentMonth, currentYear)) classes += ' weekend';
-        html += `<div class="${classes}" data-day="${day}" data-month="${currentMonth}" data-year="${currentYear}">${day}</div>`;
+        html += `<div class="${classes}" data-day="${day}" data-month="${currentMonth}" data-year="${currentYear}">`;
+        html += `${day}${getAttendanceDotHtml(attendance)}`;
+        html += `</div>`;
       }
 
       // Days from next month
@@ -467,6 +843,7 @@
           const year = parseInt(cell.dataset.year);
           selectedDate = new Date(year, month, day);
           renderMonthView();
+          showAttendancePanel(day, month, year);
         });
       });
     }
@@ -498,11 +875,13 @@
         for (let day = 1; day <= daysInMonth; day++) {
           const dateForCheck = new Date(currentYear, m, day);
           const dayOfWeek = dateForCheck.getDay();
+          const dateKey = formatDateKey(currentYear, m, day);
+          const attendance = getAttendance(dateKey);
           let classes = 'day-cell';
           if (isToday(day, m, currentYear)) classes += ' today';
           if (isSelected(day, m, currentYear)) classes += ' selected';
           if (isWeekend(dayOfWeek) && !isToday(day, m, currentYear)) classes += ' weekend';
-          html += `<div class="${classes}">${day}</div>`;
+          html += `<div class="${classes}">${day}${getAttendanceDotHtml(attendance)}</div>`;
         }
 
         // Next month days
@@ -516,6 +895,23 @@
       }
 
       yearGrid.innerHTML = html;
+
+      // Add click listeners to year view day cells (switch to month view + select date)
+      document.querySelectorAll('#yearGrid .month-card .day-cell:not(.other-month)').forEach(cell => {
+        cell.style.cursor = 'pointer';
+        cell.addEventListener('click', (e) => {
+          // Find which month-card this cell belongs to
+          const monthCard = cell.closest('.month-card');
+          const cardIndex = Array.from(monthCard.parentNode.children).indexOf(monthCard);
+          const day = parseInt(cell.textContent);
+          selectedDate = new Date(currentYear, cardIndex, day);
+          currentMonth = cardIndex;
+          // Switch to month view
+          if (isYearView) switchView();
+          renderMonthView();
+          showAttendancePanel(day, currentMonth, currentYear);
+        });
+      });
     }
 
     function switchView() {
@@ -538,6 +934,7 @@
     }
 
     function goToPrev() {
+      hideAttendancePanel();
       if (isYearView) {
         currentYear--;
         renderYearView();
@@ -552,6 +949,7 @@
     }
 
     function goToNext() {
+      hideAttendancePanel();
       if (isYearView) {
         currentYear++;
         renderYearView();
@@ -566,15 +964,15 @@
     }
 
     function goToToday() {
-      const wasYearView = isYearView;
+      selectedDate = null;
       currentMonth = today.getMonth();
       currentYear = today.getFullYear();
-      selectedDate = null;
-      if (wasYearView) {
+      if (isYearView) {
         renderYearView();
       } else {
         renderMonthView();
       }
+      hideAttendancePanel();
     }
 
     // Event Listeners
@@ -594,8 +992,17 @@
       }
     });
 
+    function renderCurrentView() {
+      if (isYearView) {
+        renderYearView();
+      } else {
+        renderMonthView();
+      }
+    }
+
     // Initialize
     renderMonthView();
+    updateAttendanceSummary();
   </script>
 </body>
 </html>
